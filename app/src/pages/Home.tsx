@@ -1,10 +1,16 @@
-import * as React from 'react';
-import { Box, Text, Center, Flex } from '@chakra-ui/react';
-import { SearchIcon } from '@chakra-ui/icons';
+import React, { useContext, useEffect } from 'react';
+import { Box, Center } from '@chakra-ui/react';
 import Sidebar from '../components/Sidebar';
 import SearchResults from '../components/SearchResults';
+import UserContext from '../context/UserContext';
 
 function Home() {
+  const { getUser } = useContext(UserContext);
+
+  useEffect(() => {
+    getUser('teste');
+  }, []);
+
   return (
     <>
       <Box
