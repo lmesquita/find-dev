@@ -34,7 +34,7 @@ function RepositoriesCard() {
           ?
             (
               repositories.map((repo) => (
-                <Link href={ repo.html_url } isExternal>
+                <Link href={ repo.html_url } isExternal key={ repo.id }>
                   <Box
                     w='170px'
                     h='159px'

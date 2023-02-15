@@ -1,25 +1,22 @@
 import React, { useContext } from 'react';
-import { Text, Flex, Center, Box } from '@chakra-ui/react';
+import { Text, Center, Box } from '@chakra-ui/react';
 import { SearchIcon } from '@chakra-ui/icons';
 import UserContext from '../context/UserContext';
-import CardProfile from './CardProfile';
+import ProfileCard from './ProfileCard';
 import RepositoriesCard from './RepositoriesCard';
 
 function SearchResults() {
   const { isSelected } = useContext(UserContext);
 
   return (
-    <Flex direction='column' align='center'>
+    <Box>
       {
         !isSelected
         ?
           (<Center
-            bg='#F4F7FE'
-            h='full'
-            left='362px'
-            right='0'
-            pos='fixed'
+            w='978px'
             flexDirection='column'
+            my='252px'
           >
             <Box>
               <Text
@@ -40,12 +37,12 @@ function SearchResults() {
               />
             </Box>
           </Center>)
-        : <>
-            <CardProfile />
+        : <Box pl='105px'>
+            <ProfileCard />
             <RepositoriesCard />
-          </>
+          </Box>
       }
-    </Flex>
+    </Box>
   );
 }
 

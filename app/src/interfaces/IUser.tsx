@@ -124,7 +124,7 @@ export interface IContext {
   user?: IUser;
   getUser: (username: string) => void;
   recents?: object[];
-  getRecents?: (user: never) => void;
+  getRecents: (user: IUser) => void;
   isSelected?: boolean;
   getIsSelected: (boll: boolean) => void;
   repositories?: IRepository[];

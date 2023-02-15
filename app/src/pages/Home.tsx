@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react';
-import { Box, Center, Flex } from '@chakra-ui/react';
+import { Box, Flex } from '@chakra-ui/react';
 import Sidebar from '../components/Sidebar';
 import SearchResults from '../components/SearchResults';
 import UserContext from '../context/UserContext';
@@ -13,21 +13,19 @@ function Home() {
 
   return (
     <>
-      <Box
-        w='362px'
-        h='full'
-        left='0'
-        bg='#C9D9FF'
-        pos='fixed'
-      >        
-        <Sidebar />
-      </Box>
       <Flex>
-        <Box width='362px' />
+        <Box
+          w='362px'
+          minHeight='720px'
+          left='0'
+          bg='#C9D9FF'
+        >        
+          <Sidebar />
+        </Box>
 
-        <Center pl='105px'>
+        <Box>
           <SearchResults />
-        </Center>
+        </Box>
 
       </Flex>
 

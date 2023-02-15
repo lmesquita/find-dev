@@ -1,11 +1,12 @@
 import UserContext from './UserContext';
-import { IProvider, IRecentUsers } from '../interfaces/IUser';
+import { IProvider, IUser } from '../interfaces/IUser';
 import { useState } from 'react';
 import { FetchApi, FetchRepositories } from '../utils/FetchApi';
+import FilterUsers from '../helpers/FilterUsers';
 
 function UserProvider({ children }: IProvider) {
   const [user, setUser] = useState({});
-  const [recents, setRecents] = useState([]);
+  const [recents, setRecents] = useState([] as IUser[]);
   const [isSelected, setIsSelected] = useState(false);
   const [repositories, setRepositories] = useState([]);
 
@@ -14,8 +15,11 @@ function UserProvider({ children }: IProvider) {
     setUser(result);
   }
 
-  function getRecents(user: never) {
-    setRecents([...recents, user])
+  function getRecents(user: IUser) {
+    const verify = FilterUsers(recents, user);
+    if (!verify) {
+      setRecents([...recents, user]);
+    }
   }
 
   function getIsSelected(bool: boolean) {
