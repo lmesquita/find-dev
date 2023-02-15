@@ -2,6 +2,8 @@ import React, { useContext } from 'react';
 import { Text, Flex } from '@chakra-ui/react';
 import { SearchIcon } from '@chakra-ui/icons';
 import UserContext from '../context/UserContext';
+import CardProfile from './CardProfile';
+import RepositoriesCard from './RepositoriesCard';
 
 function SearchResults() {
   const { user, isSelected } = useContext(UserContext);
@@ -27,7 +29,10 @@ function SearchResults() {
               h='75px'
             />
           </>)
-        : ''
+        : <>
+            <CardProfile />
+            <RepositoriesCard />
+          </>
       }
     </Flex>
   );

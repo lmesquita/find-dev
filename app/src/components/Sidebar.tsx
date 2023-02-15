@@ -5,7 +5,7 @@ import UserContext from '../context/UserContext';
 
 function Sidebar() {
   const {
-    user, getUser, getIsSelected
+    user, getUser, getIsSelected, getRepositories
   } = useContext(UserContext);
 
   const [username, setUsername] = useState('');
@@ -20,6 +20,13 @@ function Sidebar() {
       }
     }
   };
+
+  const cardClick = () => {
+    getIsSelected();
+    if (user && user.repos_url) {
+      getRepositories(user.repos_url);
+    }    
+  }
 
   return (
     <>
@@ -79,7 +86,7 @@ function Sidebar() {
             rounded='md'
             shadow='md'
             cursor='pointer'
-            onClick={ getIsSelected }
+            onClick={ cardClick }
           >
             <Flex
               pt='17px'
@@ -90,7 +97,7 @@ function Sidebar() {
                 borderRadius='full'
                 boxSize='66px'
                 src={ user.avatar_url }
-                alt='Dan Abramov'
+                alt='Profile picture'
               />
               <Box>
                 <Text

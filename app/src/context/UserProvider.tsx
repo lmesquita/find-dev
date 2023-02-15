@@ -1,12 +1,13 @@
 import UserContext from './UserContext';
 import { IProvider, IRecentUsers } from '../interfaces/IUser';
 import { useState } from 'react';
-import { FetchApi } from '../utils/FetchApi';
+import { FetchApi, FetchRepositories } from '../utils/FetchApi';
 
 function UserProvider({ children }: IProvider) {
   const [user, setUser] = useState({});
   const [recents, setRecents] = useState([]);
   const [isSelected, setIsSelected] = useState(false);
+  const [repositories, setRepositories] = useState([]);
 
   async function getUser(username: string) {
     const result = await FetchApi(username);
@@ -21,6 +22,11 @@ function UserProvider({ children }: IProvider) {
     setIsSelected(!isSelected);
   }
 
+  async function getRepositories(endpoint: string) {
+    const result = await FetchRepositories(endpoint);
+    setRepositories(result)
+  }
+
   return (
     <UserContext.Provider value={{
       user,
@@ -28,7 +34,9 @@ function UserProvider({ children }: IProvider) {
       recents,
       getRecents,
       isSelected,
-      getIsSelected
+      getIsSelected,
+      repositories,
+      getRepositories
     }}>
       { children }
     </UserContext.Provider>
