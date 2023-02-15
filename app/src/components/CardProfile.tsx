@@ -7,13 +7,13 @@ function CardProfile() {
   const { user } = useContext(UserContext);
 
   return (    
-    <Box w='787px' h='366px'>
+    <Box w='787px' h='366px' mt='38px'>
       <Text fontSize='20px' fontWeight='800'>Detalhes do Perfil</Text>
         {
           user
           ?
             (
-              <Box w='767px' h='319px' bg='#FFFFFF' rounded='md'>
+              <Box w='767px' h='319px' bg='#FFFFFF' rounded='md' mt='24px' ml='20px'>
                 <Flex justify='space-around'>
                   <Image
                     borderRadius='full'

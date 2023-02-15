@@ -1,31 +1,32 @@
 import React, {useContext, useState} from 'react';
 import { Input, Text, InputGroup, InputLeftElement, InputRightElement, Button, Box, Image, Flex } from '@chakra-ui/react';
-import { SearchIcon, ChevronRightIcon } from '@chakra-ui/icons';
+import { SearchIcon, ChevronRightIcon, CloseIcon } from '@chakra-ui/icons';
 import UserContext from '../context/UserContext';
 
 function Sidebar() {
   const {
-    user, getUser, getIsSelected, getRepositories
+    user, getUser, isSelected, getIsSelected, getRepositories
   } = useContext(UserContext);
 
   const [username, setUsername] = useState('');
   const [find, setFind] = useState(false);
 
   const searchClick = () => {
+    getIsSelected(false);
     if (username) {
       getUser(username);
-      console.log(user);
-      if (user && Object.keys(user).length > 1) {
+      if (user && Object.keys(user).length > 1 && user.repos_url) {
+        getRepositories(user.repos_url);
         setFind(true);
       }
     }
   };
 
   const cardClick = () => {
-    getIsSelected();
+    getIsSelected(!isSelected);
     if (user && user.repos_url) {
       getRepositories(user.repos_url);
-    }    
+    }
   }
 
   return (
@@ -115,8 +116,15 @@ function Sidebar() {
                   { '@' + user.login }
                 </Text>
               </Box>
-              <Box>
-                <ChevronRightIcon fontSize='44px' />
+              <Box width='44px'  textAlign='center'>
+                {
+                  !isSelected
+                  ?
+                    <ChevronRightIcon fontSize='44px' />
+                  :
+                    <CloseIcon fontSize='18px' />
+                }
+                
               </Box>
             </Flex>
           </Box>

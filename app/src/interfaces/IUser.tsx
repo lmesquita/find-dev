@@ -126,7 +126,7 @@ export interface IContext {
   recents?: object[];
   getRecents?: (user: never) => void;
   isSelected?: boolean;
-  getIsSelected: () => void;
+  getIsSelected: (boll: boolean) => void;
   repositories?: IRepository[];
   getRepositories: (repo: string) => void;
 }

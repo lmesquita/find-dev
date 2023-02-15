@@ -18,8 +18,8 @@ function UserProvider({ children }: IProvider) {
     setRecents([...recents, user])
   }
 
-  function getIsSelected() {
-    setIsSelected(!isSelected);
+  function getIsSelected(bool: boolean) {
+    setIsSelected(bool);
   }
 
   async function getRepositories(endpoint: string) {
