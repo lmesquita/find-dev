@@ -10,7 +10,7 @@ function RecentsCards() {
   } = useContext(UserContext);
 
   return (
-    <Box mt='51px'>
+    <Box my='51px'>
       {
         recents && recents?.length > 0
         ?

@@ -16,12 +16,16 @@ function Sidebar() {
   const [find, setFind] = useState(false);
 
   const searchClick = () => {
-    getIsSelected(false);
     if (username) {
-      getUser(username);
-      if (user && Object.keys(user).length > 1) {
-        setFind(true);
-      }
+      try {
+        getIsSelected(false);
+        getUser(username);     
+        if (user && Object.keys(user).length > 1) {
+          setFind(true);
+        }
+      }catch (error) {
+        console.log(error);
+      }       
     }
   };
 
@@ -42,6 +46,7 @@ function Sidebar() {
         ml='22px'
         w='317px'
         mt='7px'
+        mb='25px'
         shadow='md'
         rounded='md'
       >

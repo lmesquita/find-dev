@@ -28,7 +28,7 @@ function RepositoriesCard() {
       >
         Repositórios
       </Text>
-      <Flex wrap='wrap' w='787px' justifyContent='end' mt='24px'>
+      <Flex wrap='wrap' w='787px' justifyContent='start' mt='24px'>
         {
           repositories && repositories.length > 0
           ?
@@ -46,8 +46,24 @@ function RepositoriesCard() {
                     overflow='auto'
                     textOverflow='ellipsis'
                   >
-                    <Text fontSize='14px' fontWeight='800' mx='10px' mt='16px' lineHeight='16px'>{ repo.name }</Text>
-                    <Text fontSize='11px' fontWeight='400' my='11px' lineHeight='12px'>{ repo.description }</Text>
+                    <Text
+                      fontSize='14px'
+                      fontWeight='800'
+                      mx='10px'
+                      mt='16px'
+                      lineHeight='16px'
+                    >
+                      { repo.name }
+                    </Text>
+
+                    <Text
+                      fontSize='11px'
+                      fontWeight='400'
+                      my='11px'
+                      lineHeight='12px'
+                    >
+                      { repo.description }
+                    </Text>
                     <Center alignItems='baseline'>
                       {
                         Object.keys(colors).length > 0 && repo.language
@@ -66,8 +82,21 @@ function RepositoriesCard() {
                         : ''
                       }
                     </Center>
-                    <Text fontSize='11px' fontWeight='400' lineHeight='12px'>Criado em { repo.created_at ? FormatDate(repo.created_at) : '' }</Text>
-                    <Text fontSize='11px' fontWeight='400' mb='11px' lineHeight='12px'>Atualizado em { repo.updated_at ? FormatDate(repo.updated_at) : '' }</Text>
+                    <Text
+                      fontSize='11px'
+                      fontWeight='400'
+                      lineHeight='12px'
+                    >
+                      Criado em { repo.created_at ? FormatDate(repo.created_at) : '' }
+                    </Text>
+                    <Text
+                      fontSize='11px'
+                      fontWeight='400'
+                      mb='11px'
+                      lineHeight='12px'
+                    >
+                      Atualizado em { repo.updated_at ? FormatDate(repo.updated_at) : '' }
+                    </Text>
                   </Box>
                 </Link>
               ))
