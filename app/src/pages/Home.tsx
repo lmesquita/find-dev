@@ -17,7 +17,6 @@ function Home() {
         <Box
           w='362px'
           minHeight='720px'
-          left='0'
           bg='#C9D9FF'
         >        
           <Sidebar />

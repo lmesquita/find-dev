@@ -1,22 +1,38 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Text, Box, Image, Flex } from '@chakra-ui/react';
 import { ChevronRightIcon, CloseIcon, WarningTwoIcon } from '@chakra-ui/icons';
 import UserContext from '../context/UserContext';
 import { IUser } from '../interfaces/IUser';
+import FilterUsers from '../helpers/FilterUsers';
 
 function UserCard(props: { user: IUser, isRecents: boolean }) {
   const {
+    recents,
     isSelected,
     getIsSelected,
     getRepositories,
     getRecents,
   } = useContext(UserContext);
 
+  const [list] = useState([] as IUser[]);
+
   const cardClick = () => {
     if (!props.isRecents) {
       getIsSelected(!isSelected);
-      if (props.user && props.user.repos_url) {
-        getRecents(props.user);
+      if (props.user && props.user.repos_url && recents) {
+        
+        const verify = FilterUsers(recents, props.user);
+        if (!verify) {
+          if (recents && recents.length < 5) {
+            list.push(props.user);
+          } else {
+            list.shift();
+            list.push(props.user)
+          }        
+  
+          getRecents(list);
+        }
+
         getRepositories(props.user.repos_url);
       }
     }
@@ -32,7 +48,7 @@ function UserCard(props: { user: IUser, isRecents: boolean }) {
             w='317px'
             h='91px'
             ml='22px'
-            mt='25px'
+            mb='21px'
             bg='#FFFFFF'
             rounded='md'
             shadow='md'

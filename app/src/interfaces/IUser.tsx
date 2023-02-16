@@ -1,12 +1,9 @@
 import { ReactNode } from "react";
 
-export interface IRecentUsers {
+export interface IUser{
   avatar_url?: string;
   login?: string;
   name?: string;
-}
-
-export interface IUser extends IRecentUsers{
   bio?: string;
   blog?: string;
   company?: string;
@@ -109,22 +106,22 @@ export interface IRepository {
   subscription_url?: string;
   svn_url?: string;
   tags_url?: string;
-teams_url?: string;
-topics?: string[];
-trees_url?: string;
-updated_at?: string;
-url?: string;
-visibility?: string;
-watchers?: number;
-watchers_count?: number;
-web_commit_signoff_required?: boolean;
+  teams_url?: string;
+  topics?: string[];
+  trees_url?: string;
+  updated_at?: string;
+  url?: string;
+  visibility?: string;
+  watchers?: number;
+  watchers_count?: number;
+  web_commit_signoff_required?: boolean;
 }
 
 export interface IContext {
   user?: IUser;
   getUser: (username: string) => void;
   recents?: object[];
-  getRecents: (user: IUser) => void;
+  getRecents: (users: IUser[]) => void;
   isSelected?: boolean;
   getIsSelected: (boll: boolean) => void;
   repositories?: IRepository[];
